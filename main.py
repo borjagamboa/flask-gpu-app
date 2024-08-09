@@ -1,4 +1,4 @@
-from flask_ngrok import run_with_ngrok
+from pyngrok import ngrok
 from flask import Flask, render_template, request
 
 import torch
@@ -12,6 +12,8 @@ pipe = StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5",
 pipe.to("cuda")
 
 # Start flask app and set to ngrok
+port = 5000
+ngrok.connect(port).public_url
 app = Flask(__name__)
 run_with_ngrok(app)
 
@@ -38,4 +40,4 @@ def generate_image():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port = port)
