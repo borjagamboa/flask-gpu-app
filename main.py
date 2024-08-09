@@ -1,4 +1,5 @@
 from pyngrok import ngrok
+ngrok.update()
 from flask import Flask, render_template, request
 
 import torch
